@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/testnodets.iml" filepath="$PROJECT_DIR$/testnodets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/polyglot-react-typescript.iml" filepath="$PROJECT_DIR$/polyglot-react-typescript.iml" />
     </modules>
   </component>
 </project>
