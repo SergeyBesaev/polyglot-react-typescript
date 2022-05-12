@@ -24,12 +24,10 @@
 }
 
 .lessons {
-    display: flex;
-    padding: 15px;
-    border: 2px solid blue;
-    margin-right: 10px;
-    justify-content: start;
-    align-items: flex-end;
+    width: 100%;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 5px;
 }
 
 .dictionary {

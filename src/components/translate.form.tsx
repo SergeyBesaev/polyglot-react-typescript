@@ -47,6 +47,11 @@ const TranslateForm = ({...props}) => {
         }
     }
 
+    function skipWord() {
+        setSkip(skip += 1)
+        return getNextWord()
+    }
+
     return (
 
         <Container className="p-3">
@@ -63,11 +68,11 @@ const TranslateForm = ({...props}) => {
                         onChange={event => setCheckWord(event.target.value)}
                         onKeyPress={handleKeyPress}
                     />
-                    <Button onClick={getNextWord}>Пропустить</Button>
+                    <Button onClick={skipWord}>Пропустить</Button>
                     <Button onClick={checkTranslate}>Проверить</Button>
                     <h5>{result}</h5>
                 </div>
-                : <Result numWordsProps={numWords} countTry={count}/>
+                : <Result numWordsProps={numWords} countTry={count} skip={skip}/>
             }
         </div>
         </Container>
