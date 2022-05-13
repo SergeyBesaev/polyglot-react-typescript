@@ -7,25 +7,29 @@ const TranslateForm = ({...props}) => {
 
     const words: WordForm[] = props.words as WordForm[]
 
-    let [numWords, setNumWords] = useState(0)
-    let [word, setWord] = useState(getFirstWord)
-    let [chekWord, setCheckWord] = useState('')
-    let [result, setResult] = useState('')
-    let [count, setCount] = useState(0)
-    let [skip, setSkip] = useState(0)
+    let [countAllWords, setCountAllWords] = useState(0)
+    let [countSkip, setCountSkip] = useState(0)
+    let [countSuccessfully, setCountSuccessfully] = useState(0)
+    let [countWithPrompting, setCountWithPrompting] = useState(0)
+
+    const [clickMouse, setClickMouse] = useState(false)
+
+    let [checkWord, setCheckWord] = useState(getFirstWord)
+    let [inputWord, setInputWord] = useState('')
+    let [successCheck, setSuccessCheck] = useState('')
 
     function getFirstWord(): WordForm {
+        setCountAllWords(countAllWords += 1)
         return words.shift() as WordForm
     }
 
     function checkTranslate() {
-        setCount(count += 1)
-        if (chekWord === word.eng) {
-            setNumWords(numWords += 1)
-            setResult('Правильно')
+        if (inputWord === checkWord.eng) {
+            setCountAllWords(countAllWords += 1)
+            setCountSuccessfully(countSuccessfully += 1)
             getNextWord()
         } else {
-            setResult('Неправильно')
+            setSuccessCheck('Неправильно')
         }
     }
 
@@ -33,48 +37,61 @@ const TranslateForm = ({...props}) => {
         if (e.key === 'Enter') {
             checkTranslate()
         }
+    }
 
+    function handleMousePress() {
+        if (!clickMouse) {
+            setCountWithPrompting(countWithPrompting += 1)
+            setClickMouse(true)
+        }
     }
 
     function getNextWord() {
+        setCountAllWords(countAllWords += 1)
+        setClickMouse(false)
         const verb = words.shift()
         if (verb) {
-            setWord(verb)
-            setCheckWord('')
-            setResult('')
+            setCheckWord(verb)
+            setInputWord('')
+            setSuccessCheck('')
         } else {
-            setCheckWord('end')
+            setInputWord('end')
         }
     }
 
     function skipWord() {
-        setSkip(skip += 1)
+        setCountSkip(countSkip += 1)
         return getNextWord()
     }
+
 
     return (
 
         <Container className="p-3">
 
-        <div>
-            {chekWord !== 'end'
-                ?
-                <div>
-                    <h1>{word.rus}</h1>
-                    <h4>Подсказка</h4>
-                    <input
-                        value={chekWord}
-                        placeholder='Введите перевод'
-                        onChange={event => setCheckWord(event.target.value)}
-                        onKeyPress={handleKeyPress}
-                    />
-                    <Button onClick={skipWord}>Пропустить</Button>
-                    <Button onClick={checkTranslate}>Проверить</Button>
-                    <h5>{result}</h5>
-                </div>
-                : <Result numWordsProps={numWords} countTry={count} skip={skip}/>
-            }
-        </div>
+            <div>
+                {inputWord !== 'end'
+                    ?
+                    <div>
+                        <h1>{checkWord.rus}</h1>
+                        {!clickMouse
+                            ? <h4>Подсказка</h4>
+                            : <h4>{checkWord.eng}</h4>
+                        }
+                        <input
+                            value={inputWord}
+                            placeholder='Введите перевод'
+                            onChange={event => setInputWord(event.target.value)}
+                            onKeyPress={handleKeyPress}
+                        />
+                        <Button onClick={skipWord}>Пропустить</Button>
+                        <Button onClick={handleMousePress}>Подсказка</Button>
+                        <h5>{successCheck}</h5>
+                    </div>
+                    : <Result countAllWords={countAllWords} countSuccessfully={countSuccessfully} countSkip={countSkip}
+                              countWithPrompting={countWithPrompting}/>
+                }
+            </div>
         </Container>
     );
 };

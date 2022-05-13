@@ -85,8 +85,6 @@ function App() {
                     <Route path='/dictionary/prepositions' element={<Prepositions/>}/>
                     <Route path='/dictionary/verbs' element={<Verbs/>}/>
 
-
-
                 </Routes>
             </div>
         </Container>
