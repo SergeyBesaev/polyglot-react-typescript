@@ -43,11 +43,11 @@ function App() {
                             <Nav.Link href="/lessons">Lessons</Nav.Link>
                             <Nav.Link href="/dictionary">Dictionary</Nav.Link>
                             <NavDropdown title="Dictations" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.1">Easy level</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Medium level</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">High level</NavDropdown.Item>
                                 <NavDropdown.Divider/>
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.4">Show all dictations</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
