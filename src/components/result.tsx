@@ -4,8 +4,10 @@ import {Card, CardGroup} from "react-bootstrap";
 const Result = ({...props}) => {
 
     const numWords: number = props.countAllWords
+
     const successfully: number = props.countSuccessfully
     const successfullyPercent: number = returnSuccessfullyPercent(numWords, successfully)
+
     const withPrompting: number = props.countWithPrompting
     const skipWords: number = props.countSkip
 
@@ -13,7 +15,7 @@ const Result = ({...props}) => {
 
     function returnSuccessfullyPercent(numWords: number, successfully: number): number {
         if (numWords !== 0 && successfully !== 0) {
-            return numWords/100 * successfully
+            return Math.round(successfully / numWords * 100)
         } else {
             return 0
         }
@@ -27,7 +29,7 @@ const Result = ({...props}) => {
             <CardGroup>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Всего слов</Card.Title>
+                        <Card.Title>Пройдено слов</Card.Title>
                         <Card.Text>
                             {numWords}
                         </Card.Text>
@@ -39,7 +41,7 @@ const Result = ({...props}) => {
 
                 <Card>
                     <Card.Body>
-                        <Card.Title>Успешно (с первого раза)</Card.Title>
+                        <Card.Title>Успешно (без подсказки)</Card.Title>
                         <Card.Text>
                             {successfully} ({successfullyPercent}%)
                         </Card.Text>

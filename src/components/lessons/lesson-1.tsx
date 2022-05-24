@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import TranslateForm from "../translate.form";
+import {Button} from "react-bootstrap";
 
 const Lesson1 = () => {
 
@@ -18,10 +19,17 @@ const Lesson1 = () => {
 
     return (
         <div>
-            <h1>{title}</h1>
-            <h3>{description}</h3>
+            <div style={{textAlign: "center"}}>
+                <h1>{title}</h1>
+            </div>
             {words.length === 0
-                ? <button onClick={getWordsFromServer}>Start lesson</button>
+                ?
+                <div>
+                    <h5>{description}. В этом блоке будет таблица с правилами построения глаголов в разных временах</h5>
+                    <div style={{textAlign: "center"}}>
+                        <Button onClick={getWordsFromServer}>Start</Button>
+                    </div>
+                </div>
                 : <TranslateForm words={words}/>
             }
 

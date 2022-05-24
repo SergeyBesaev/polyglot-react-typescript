@@ -5,7 +5,7 @@ import Home from "./components/home";
 import "./styles/App.css"
 import Nouns from "./components/dictionary/nouns";
 import Adjectives from "./components/dictionary/adjectives";
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Carousel, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Lessons from "./components/lessons/lessons";
 import Lesson2 from "./components/lessons/lesson-2";
 import Lesson3 from "./components/lessons/lesson-3";
